@@ -1,0 +1,6 @@
+SELECT c.CustomerName
+FROM Customers as c JOIN Orders as o on c.CustomerID=o.CustomerID
+	JOIN OrderDetails as od on o.OrderID = od.OrderID
+	JOIN Products as p on p.ProductID = od.ProductID
+GROUP BY c.CustomerID
+HAVING SUM(p.Price * od.Quantity) >= 10000;
